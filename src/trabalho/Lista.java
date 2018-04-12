@@ -110,6 +110,7 @@ public class Lista {
 		return achei;
 	}
 	
+	//Criado apenas para verificar se a ordenação foi feita corretamente;
 	public IGenerico[] listaTodos() {
 		IGenerico[] genericos = new IGenerico[numElem];
 		Caixa c = primeiro;
