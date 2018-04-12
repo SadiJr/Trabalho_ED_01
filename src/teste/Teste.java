@@ -13,11 +13,11 @@ public class Teste {
 	private Lista lista;
 	
 	public Teste() {
-		aluno1 = new Aluno("Higor");
-		aluno2 = new Aluno("Sadi");
-		aluno3 = new Aluno("Marcos");
-		aluno4 = new Aluno("Lucas");
-		aluno5 = new Aluno("João");
+		aluno1 = new Aluno(45,"Higor");
+		aluno2 = new Aluno(19,"Sadi");
+		aluno3 = new Aluno(1,"Marcos");
+		aluno4 = new Aluno(7,"Lucas");
+		aluno5 = new Aluno(3,"João");
 		lista = new Lista();
 	}
 	

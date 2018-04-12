@@ -6,7 +6,6 @@ public class Lista {
 	
 	
 	public Lista() {
-		//primeiro = new Caixa(null, null, null);
 		numElem = 0;
 	}
 	
@@ -70,6 +69,10 @@ public class Lista {
 				if(c.getGenerico().getId() == id) {
 					generico = c.getGenerico();
 					retorna = true;
+				
+				}else if(c.getSeguinte().equals(primeiro)){
+					throw new Exception("O objeto com o id " + id + " não existe na lista");
+				
 				}else {
 					c = c.getSeguinte();
 				}

@@ -1,19 +1,22 @@
 package trabalho;
 
 public class Aluno implements IGenerico{
-	private static int numId = 0;
 	private int id;
 	private String nome;
 	
-	public Aluno(String nome) {
-		this.id = numId;
+	public Aluno(int id, String nome) {
+		this.id = id;
 		this.nome = nome;
-		numId++;
 	}
 	
 	@Override
 	public int getId() {
 		return id;
+	}
+	
+	@Override
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
