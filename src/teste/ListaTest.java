@@ -18,7 +18,7 @@ public class ListaTest {
 		private Aluno aluno4 = new Aluno(1, "Lucas");;
 		private Aluno aluno5 = new Aluno(35, "João");;
 		private Aluno alunoRepetido = new Aluno(45, "Repetido");
-		private Lista lista = new Lista();;
+		private Lista lista = new Lista();
 		/*
 		 * Os métodos de teste necessários são:
 		 * 

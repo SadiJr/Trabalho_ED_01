@@ -15,11 +15,52 @@ public class Lista {
 			primeiro.setAnterior(primeiro);
 			primeiro.setSeguinte(primeiro);
 			numElem++;
+		}else if(numElem == 1){
+			if(primeiro.getGenerico().getId() > generico.getId()) {
+				insereAntesPrimeiro(generico);
+			}else {
+				inserirDepoisPrimeiro(generico);
+			}
 		}else {
-			//Métodos de inserção ordenada aqui
+			if(primeiro.getGenerico().getId() > generico.getId()) {
+				insereAntesPrimeiro(generico);
+			}else {
+				inserirAntesDe(percorreLista(generico), generico);
+			}
 		}
 		
 	}
+	
+	private void insereAntesPrimeiro(IGenerico generico) {
+		Caixa nova = new Caixa(primeiro.getAnterior(), generico, primeiro);
+		primeiro.getAnterior().setSeguinte(nova);
+		primeiro = nova;
+		numElem++;
+	}
+	
+	private void inserirDepoisPrimeiro(IGenerico generico) {
+		Caixa nova = new Caixa(primeiro, generico, primeiro);
+		numElem++;
+	}
+	
+	private void inserirAntesDe(Caixa caixa, IGenerico novo) {
+		Caixa nova = new Caixa(caixa.getAnterior(), novo, caixa);
+		numElem++;
+	}
+	
+	private Caixa percorreLista (IGenerico generico) {
+		Caixa c = primeiro;
+		boolean achei = false;
+		while(!achei) {
+			if(c.getGenerico().getId() > generico.getId()) {
+				achei = true;
+			}else {
+				c = c.getSeguinte();
+			}
+		}
+		return c;
+	}
+	
 	
 	public void excluir(int id) throws Exception{
 		Caixa c = primeiro;
