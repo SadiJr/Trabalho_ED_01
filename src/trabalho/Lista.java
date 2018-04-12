@@ -82,7 +82,7 @@ public class Lista {
 					c.getSeguinte().setAnterior(c.getAnterior());
 					numElem--;
 					excluido = true;
-				}else if(c.getSeguinte() == primeiro) {
+				}else if(c.getSeguinte().equals(primeiro)) {
 					throw new Exception("O objeto com o id " + id + " não existe na lista");
 				}else {
 					c = c.getSeguinte();
