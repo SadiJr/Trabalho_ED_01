@@ -9,7 +9,10 @@ public class Lista {
 		numElem = 0;
 	}
 	
-	public void insereOrdenado(IGenerico generico) {
+	public void insereOrdenado(IGenerico generico) throws Exception {
+		if(existe(generico.getId())) {
+			throw new Exception("Já existem um objeto com o id " + generico.getId() + " na lista");
+		}
 		if(numElem == 0) {
 			primeiro = new Caixa(null, generico, null);
 			primeiro.setAnterior(primeiro);
@@ -34,17 +37,22 @@ public class Lista {
 	private void insereAntesPrimeiro(IGenerico generico) {
 		Caixa nova = new Caixa(primeiro.getAnterior(), generico, primeiro);
 		primeiro.getAnterior().setSeguinte(nova);
+		primeiro.setAnterior(nova);
 		primeiro = nova;
 		numElem++;
 	}
 	
 	private void inserirDepoisPrimeiro(IGenerico generico) {
 		Caixa nova = new Caixa(primeiro, generico, primeiro);
+		primeiro.setSeguinte(nova);
+		primeiro.setAnterior(nova);
 		numElem++;
 	}
 	
 	private void inserirAntesDe(Caixa caixa, IGenerico novo) {
 		Caixa nova = new Caixa(caixa.getAnterior(), novo, caixa);
+		caixa.getAnterior().setSeguinte(nova);
+		caixa.setAnterior(nova);
 		numElem++;
 	}
 	
@@ -123,24 +131,24 @@ public class Lista {
 	}
 	
 	//Criei apenas para caso seja necessário
-	private boolean existe(int id) throws Exception{
-		boolean achei = false;
+	private boolean existe(int id) {
+		boolean existe = true;
 		Caixa c = primeiro;
-		while(!achei) {
+		while(existe) {
 			if(numElem == 0) {
-				throw new Exception("Lista vazia");
+				 existe = false;
 			}else if(numElem == 1) {
 				if(c.getGenerico().getId() == id) {
-					achei = true;
+					return true;
 				}else {
-					throw new Exception("O objeto com o id " + id + " não existe na lista");
+					existe = false;
 				}
 			}else {
 				if(c.getGenerico().getId() == id) {
-					achei = true;
+					return true;
 				}else {
 					if(c.getSeguinte().equals(primeiro)) {
-						throw new Exception("O objeto com o id " + id + " não existe na lista");
+						existe = false;
 					}else {
 						c = c.getSeguinte();
 					}
@@ -148,7 +156,7 @@ public class Lista {
 			}
 			
 		}
-		return achei;
+		return existe;
 	}
 	
 	//Criado apenas para verificar se a ordenação foi feita corretamente;
