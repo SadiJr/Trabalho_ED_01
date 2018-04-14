@@ -6,35 +6,45 @@ public class ListaOrdenada {
 	
 	
 	public ListaOrdenada() {
+		primeiro = new Caixa(null, null, null);
 		numElem = 0;
 	}
 	
 	public void insereOrdenado(IGenerico generico) throws Exception {
-		if(existe(generico.getId())) {
+		if(ListaSimples.getInstance().existe(primeiro, generico.getId(), numElem)) {
 			throw new Exception("Já existem um objeto com o id " + generico.getId() + " na lista");
 		}
 		if(numElem == 0) {
-			primeiro = new Caixa(null, generico, null);
-			primeiro.setAnterior(primeiro);
-			primeiro.setSeguinte(primeiro);
+			//primeiro = new Caixa(null, generico, null);
+			//primeiro.setAnterior(primeiro);
+			//primeiro.setSeguinte(primeiro);
+			primeiro = ListaSimples.getInstance().inserirPrimeiro(primeiro, generico);
 			numElem++;
 		}else if(numElem == 1){
 			if(primeiro.getGenerico().getId() > generico.getId()) {
-				insereAntesPrimeiro(generico);
+				primeiro = ListaSimples.getInstance().inserirAntesPrimeiro(primeiro, generico);
+				numElem++;
+				//insereAntesPrimeiro(generico);
 			}else {
-				inserirDepoisPrimeiro(generico);
+				primeiro = ListaSimples.getInstance().inserirDepoisPrimeiro(primeiro, generico);
+				numElem++;
+				//inserirDepoisPrimeiro(generico);
 			}
 		}else {
 			if(primeiro.getGenerico().getId() > generico.getId()) {
-				insereAntesPrimeiro(generico);
+				primeiro = ListaSimples.getInstance().inserirAntesPrimeiro(primeiro, generico);
+				numElem++;
+				//insereAntesPrimeiro(generico);
 			}else {
-				inserirAntesDe(percorreLista(generico), generico);
+				ListaSimples.getInstance().inserirAntesDe(ListaSimples.getInstance().percorreLista(primeiro, generico), generico);
+				//inserirAntesDe(percorreLista(generico), generico);
+				numElem++;
 			}
 		}
 		
 	}
 	
-	private void insereAntesPrimeiro(IGenerico generico) {
+	/*private void insereAntesPrimeiro(IGenerico generico) {
 		Caixa nova = new Caixa(primeiro.getAnterior(), generico, primeiro);
 		primeiro.getAnterior().setSeguinte(nova);
 		primeiro.setAnterior(nova);
@@ -47,16 +57,16 @@ public class ListaOrdenada {
 		primeiro.setSeguinte(nova);
 		primeiro.setAnterior(nova);
 		numElem++;
-	}
+	}*/
 	
-	private void inserirAntesDe(Caixa caixa, IGenerico novo) {
+	/*private void inserirAntesDe(Caixa caixa, IGenerico novo) {
 		Caixa nova = new Caixa(caixa.getAnterior(), novo, caixa);
 		caixa.getAnterior().setSeguinte(nova);
 		caixa.setAnterior(nova);
 		numElem++;
-	}
+	}*/
 	
-	private Caixa percorreLista (IGenerico generico) {
+	/*private Caixa percorreLista (IGenerico generico) {
 		Caixa c = primeiro;
 		boolean achei = false;
 		while(!achei) {
@@ -67,11 +77,13 @@ public class ListaOrdenada {
 			}
 		}
 		return c;
-	}
+	}*/
 	
 	
 	public void excluir(int id) throws Exception{
-		Caixa c = primeiro;
+		ListaSimples.getInstance().excluir(primeiro, id, numElem);
+		numElem--;
+		/*Caixa c = primeiro;
 		boolean excluido = false;
 		while(!excluido) {
 			if(numElem == 0) {
@@ -97,12 +109,13 @@ public class ListaOrdenada {
 				}
 			}
 
-		}
+		}*/
 		
 	}
 	
 	public IGenerico buscar(int id) throws Exception {
-		IGenerico generico = null;
+		return ListaSimples.getInstance().buscar(primeiro, id, numElem);
+		/*IGenerico generico = null;
 		Caixa c = primeiro;
 		boolean retorna = false;
 		while(!retorna) {
@@ -127,12 +140,13 @@ public class ListaOrdenada {
 				}
 			}
 		}
-		return generico;
+		return generico;*/
 	}
 	
 	//Criei apenas para caso seja necessário
 	private boolean existe(int id) {
-		boolean existe = true;
+		return ListaSimples.getInstance().existe(primeiro, id, numElem);
+		/*boolean existe = true;
 		Caixa c = primeiro;
 		while(existe) {
 			if(numElem == 0) {
@@ -156,18 +170,16 @@ public class ListaOrdenada {
 			}
 			
 		}
-		return existe;
+		return existe;*/
 	}
 	
 	//Criado apenas para verificar se a ordenação foi feita corretamente;
 	public IGenerico[] listaTodos() {
-		IGenerico[] genericos = new IGenerico[numElem];
-		Caixa c = primeiro;
-		for(int i=0; i < numElem; i++) {
-			genericos[i] = c.getGenerico();
-			c = c.getSeguinte();
-		}
-		return genericos;
+		return ListaSimples.getInstance().retornaListaTodos(primeiro, numElem);
+	}
+	
+	public void imprimeTodos() {
+		ListaSimples.getInstance().listaTodos(primeiro, numElem);
 	}
 
 }

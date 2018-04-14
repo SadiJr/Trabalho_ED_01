@@ -46,22 +46,24 @@ public class Main {
 		lista.insereOrdenado(aluno1);
 		lista.insereOrdenado(aluno4);
 		lista.insereOrdenado(aluno2);
-		IGenerico[] array = lista.listaTodos();
+		/*IGenerico[] array = lista.listaTodos();
 		System.out.println("Resuldado:");
 		for(int i = 0; i<array.length; i++) {
 			System.out.println(array[i].getId());
-		}
+		}*/
+		lista.imprimeTodos();
 		exclusao();
 	}
 	
 	private static void exclusao() throws Exception {
 		System.out.println("\nTestando se a exclusão está funcionando:\nSerá excluído o objeto de id 18");
 		lista.excluir(18);
-		IGenerico[] array = lista.listaTodos();
+		/*IGenerico[] array = lista.listaTodos();
 		System.out.println("Resultado");
 		for(int i = 0; i<array.length; i++) {
 			System.out.println(array[i].getId());
-		}
+		}*/
+		lista.imprimeTodos();
 		testeBusca();
 	}
 	
