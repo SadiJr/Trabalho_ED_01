@@ -9,7 +9,7 @@ import org.junit.rules.ExpectedException;
 
 import trabalho.IGenerico;
 import trabalho.Aluno;
-import trabalho.Lista;
+import trabalho.ListaOrdenada;
 
 public class ListaTest {
 //		private Aluno aluno1 = new Aluno(39, "Higor");

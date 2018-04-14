@@ -8,7 +8,7 @@ public class Main {
 	static Aluno aluno4 = new Aluno(1, "Lucas");;
 	static Aluno aluno5 = new Aluno(35, "João");;
 	static Aluno alunoRepetido = new Aluno(45, "Repetido");
-	static Lista lista = new Lista();
+	static ListaOrdenada lista = new ListaOrdenada();
 
 	public static void main(String[] args) {
 		try {
@@ -34,7 +34,7 @@ public class Main {
 
 	}
 	
-	private static void testErroExclusao(Lista lista, int id) throws Exception {
+	private static void testErroExclusao(ListaOrdenada lista, int id) throws Exception {
 		lista.excluir(id);
 	}
 	

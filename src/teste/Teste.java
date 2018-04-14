@@ -2,7 +2,7 @@ package teste;
 
 import trabalho.Aluno;
 import trabalho.IGenerico;
-import trabalho.Lista;
+import trabalho.ListaOrdenada;
 
 public class Teste {
 //	private Aluno aluno1;

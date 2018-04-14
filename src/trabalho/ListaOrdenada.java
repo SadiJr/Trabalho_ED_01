@@ -1,11 +1,11 @@
 package trabalho;
 
-public class Lista {
+public class ListaOrdenada {
 	private Caixa primeiro;
 	private int numElem;
 	
 	
-	public Lista() {
+	public ListaOrdenada() {
 		numElem = 0;
 	}
 	
