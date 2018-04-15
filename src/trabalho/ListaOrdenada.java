@@ -36,7 +36,7 @@ public class ListaOrdenada {
 				numElem++;
 				//insereAntesPrimeiro(generico);
 			}else {
-				ListaSimples.getInstance().inserirAntesDe(ListaSimples.getInstance().percorreLista(primeiro, generico), generico);
+				ListaSimples.getInstance().inserirAntesDe(ListaSimples.getInstance().percorreLista(primeiro, generico, numElem), generico);
 				//inserirAntesDe(percorreLista(generico), generico);
 				numElem++;
 			}

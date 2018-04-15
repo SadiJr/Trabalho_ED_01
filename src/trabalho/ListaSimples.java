@@ -39,10 +39,10 @@ public class ListaSimples {
 		caixa.setAnterior(nova);
 	}
 	
-	public Caixa percorreLista(Caixa primeiro, IGenerico generico) {
+	public Caixa percorreLista(Caixa primeiro, IGenerico generico, int numElem) {
 		Caixa c = primeiro;
 		boolean achei = false;
-		while(!achei) {
+		for(int i =0; i < numElem; i++) {
 			if(c.getGenerico().getId() > generico.getId()) {
 				achei = true;
 			}else {
