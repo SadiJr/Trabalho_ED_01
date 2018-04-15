@@ -97,11 +97,9 @@ public class ListaSimples {
 			}else {
 				if(c.getGenerico().getId() == id) {
 					generico = c.getGenerico();
-					retorna = true;
-				
+					retorna = true;				
 				}else if(c.getSeguinte().equals(primeiro)){
-					throw new Exception("O objeto com o id " + id + " não existe na lista");
-				
+					throw new Exception("O objeto com o id " + id + " não existe na lista");				
 				}else {
 					c = c.getSeguinte();
 				}

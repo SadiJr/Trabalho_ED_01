@@ -6,13 +6,13 @@ public class ListaOrdenada {
 	
 	
 	public ListaOrdenada() {
-		primeiro = new Caixa(null, null, null);
+		//primeiro = new Caixa(null, null, null);
 		numElem = 0;
 	}
 	
 	public void insereOrdenado(IGenerico generico) throws Exception {
 		if(ListaSimples.getInstance().existe(primeiro, generico.getId(), numElem)) {
-			throw new Exception("Já existem um objeto com o id " + generico.getId() + " na lista");
+			throw new Exception("Já existe um objeto com a id " + generico.getId() + " na lista");
 		}
 		if(numElem == 0) {
 			//primeiro = new Caixa(null, generico, null);
@@ -143,7 +143,7 @@ public class ListaOrdenada {
 		return generico;*/
 	}
 	
-	//Criei apenas para caso seja necessário
+	//Criado apenas para caso seja necessário
 	private boolean existe(int id) {
 		return ListaSimples.getInstance().existe(primeiro, id, numElem);
 		/*boolean existe = true;
