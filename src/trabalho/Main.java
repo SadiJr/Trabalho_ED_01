@@ -1,7 +1,8 @@
 package trabalho;
 
-import org.junit.runner.JUnitCore;
+import org.junit.runner.JUnitCore; 
 import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 
 import teste.ListaTest;
 public class Main {
@@ -9,7 +10,34 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			JUnitCore junit = new JUnitCore();
-			junit.run(ListaTest.class);
+			//junit.run(ListaTest.class);
+			ListaTest teste = new ListaTest();
+			Result result = junit.run(teste.getClass());
+			//Util.printResult(result);
+			
+			System.out.println("Run " + result.getRunCount() + " tests in "+ result.getRunTime() +"ms.");
+			if (result.wasSuccessful()) {
+				System.out.println("\nAll tests were successfull!");
+			}else {
+				System.err.println(result.getFailureCount() + "Failures:");
+				for (Failure fail: result.getFailures()){
+					System.err.println("Failure in: "+ fail.getTestHeader());
+					System.err.println(fail.getMessage());
+					System.err.println(fail.getTrace());
+					System.out.println();
+				}
+				if(result.getIgnoreCount() > 0) {
+					System.out.println("And " + result.getIgnoreCount() + " tests ignored");
+				}
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+}
+
 			
 //			System.out.println("Testando se é lançado erro quando se tenta excluir algo da lista "
 //					+ "quando ela está vazia");
@@ -41,11 +69,11 @@ public class Main {
 //		lista.insereOrdenado(aluno5);
 //		lista.insereOrdenado(aluno3);
 //		lista.insereOrdenado(aluno1);
-//		lista.insereOrdenado(aluno4);
+//		lista.insereOrdenado(aluno4));
 //		lista.insereOrdenado(aluno2);
 //		/*IGenerico[] array = lista.listaTodos();
 //		System.out.println("Resuldado:");
-//		for(int i = 0; i<array.length; i++) {
+//		for(int i = 0; i<ar)ray.length; i++) {
 //			System.out.println(array[i].getId());
 //		}*/
 //		lista.imprimeTodos();
@@ -80,9 +108,4 @@ public class Main {
 //			System.out.println(e.getMessage());
 //		}
 //		
-		}catch(Exception e) {
 		
-		}
-	}
-
-}
